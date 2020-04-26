@@ -1,10 +1,14 @@
 import { TASKS_LIST_RECEIVED } from './actions'
 
+type DefaultStateType = {
+    tasksList: Array<Object>
+}
+
 const defaultState = {
     tasksList: [],
 }
 
-const eventReducer = (state = defaultState, action) => {
+const eventReducer = (state: DefaultStateType = defaultState, action: any): DefaultStateType => {
     switch (action.type) {
         case TASKS_LIST_RECEIVED: {
             return {

@@ -1,10 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 
-export const TasksList = ({ text, done, id, onDelete, onChange }) => {
+type TasksListProps = {
+    text: string
+    done: boolean
+    id: number
+    onDelete: any
+    onChange: any
+}
+
+export const TasksList = ({ text, done, id, onDelete, onChange }: TasksListProps) => {
     return (
-        <li className={classNames('list-item', { 'list-item_done': done })}>
+        <li className={`list-item ${done ? 'list-item_done' : ''}`}>
             <input
                 className="list-item__checkbox"
                 defaultChecked={done}

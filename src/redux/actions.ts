@@ -6,7 +6,14 @@ export const ADD_TASK = 'ADD_EVENT';
 export const DELETE_TASK = 'DELETE_EVENT';
 export const UPDATE_TASK = 'UPDATE_TASK';
 
-export const tasksListReceived = (tasksList) => {
+type ActionType = {
+    type: string,
+    payload: {
+        tasksList: Array<Object>
+    }
+}
+
+export const tasksListReceived = (tasksList: Array<Object>): ActionType => {
     const action = {
         type: TASKS_LIST_RECEIVED,
         payload: {
@@ -16,16 +23,16 @@ export const tasksListReceived = (tasksList) => {
     return action;
 }
 
-export const getTasksList = () => {
-    const thunkAction = function (dispatch) {
+export const getTasksList = (tasksList: Response) => {
+    const thunkAction = function (dispatch: any, getState: any) {
         fetchTasksList()
             .then(tasksList => dispatch(tasksListReceived(tasksList)))
     };
     return thunkAction;
 }
 
-export const onCreateTask = text => {
-    const thunkAction = function (dispatch, getState) {
+export const onCreateTask = (text: string) => {
+    const thunkAction = function (dispatch: any, getState: any) {
         const newTask = {
             text,
             done: false,
@@ -37,12 +44,12 @@ export const onCreateTask = text => {
     return thunkAction;
 }
 
-export const onUpdateTask = (taskId) => {
-    const thunkAction = function (dispatch, getState) {
+export const onUpdateTask = (taskId: number) => {
+    const thunkAction = function (dispatch: any, getState: any) {
         const state = getState();
         const tasksList = tasksListSelector(state)
         const task = tasksList.find(
-            task => task.id === taskId,
+            (elem: { id: number; }) => elem.id === taskId,
         )
 
         const upDatedTask = {
@@ -56,8 +63,8 @@ export const onUpdateTask = (taskId) => {
     return thunkAction;
 }
 
-export const onDeleteTask = (taskId) => {
-    const thunkAction = function (dispatch) {
+export const onDeleteTask = (taskId: number) => {
+    const thunkAction = function (dispatch: any, getState: any) {
         deleteTask(taskId)
             .then(tasksList => dispatch(getTasksList(tasksList)))
     };
