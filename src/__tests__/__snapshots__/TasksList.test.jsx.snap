@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TasksList /> should display done task 1`] = `
+<li
+  className="list-item list-item_done"
+>
+  <input
+    className="list-item__checkbox"
+    defaultChecked={true}
+    onChange={[Function]}
+    type="checkbox"
+  />
+  <span
+    className="list-item__text"
+  >
+    task 1
+  </span>
+  <button
+    className="list-item__delete-btn"
+    onClick={[Function]}
+  />
+</li>
+`;
+
+exports[`<TasksList /> should display undone task 1`] = `
+<li
+  className="list-item"
+>
+  <input
+    className="list-item__checkbox"
+    defaultChecked={false}
+    onChange={[Function]}
+    type="checkbox"
+  />
+  <span
+    className="list-item__text"
+  >
+    task 1
+  </span>
+  <button
+    className="list-item__delete-btn"
+    onClick={[Function]}
+  />
+</li>
+`;
+
+exports[`<TasksList /> should update task on checkbox checked 1`] = `[MockFunction]`;
